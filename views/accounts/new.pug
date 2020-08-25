@@ -1,0 +1,36 @@
+extends ../layout
+
+block content
+  h1 Registration Form
+
+  form(method="POST")
+    .form-group
+      label(for="emailInput") Email
+      input.form-control#emailInput(
+        name="email"
+        type="email"
+        aria-describedby="emailHelp"
+        placeholder="Enter email"
+        required
+      )
+      small#emailHelp.form-text.text-muted We'll never share your email with anyone else.
+
+    .form-group
+      label(for="password") Password
+      input.form-control#password(
+        name="password"
+        type="password"
+        placeholder="Password"
+        required
+      )
+
+    .form-group
+      label(for="confirmPassword") Password
+      input.form-control#confirmPassword(
+        name="confirmPassword"
+        type="password"
+        placeholder="Confirm Password"
+        required
+      )
+
+    button.btn.btn-primary(type="submit" onsubmit="return checkForm(this);") Submit
