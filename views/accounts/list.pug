@@ -1,0 +1,10 @@
+extends ../layout
+
+block content
+  h1 Accounts
+
+  table
+    each account in accounts
+      tr
+        td= account.username
+        td= account.password
