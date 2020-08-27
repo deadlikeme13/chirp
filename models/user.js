@@ -8,12 +8,16 @@ var userSchema = new Schema({
     type: String,
     lowercase: true,
     trim: true,
-    index: true,
-    required: true,
-    unique: true,
-    uniqueCaseInsensitive: true
+    required: [true, 'Username is required.'],
+    match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Username must be a valid email address']
+    //index: true,
+    //unique: true,
+    //uniqueCaseInsensitive: true
   },
-  password: { type: String, required: true }
+  password: { 
+    type: String, 
+    required: [true, 'Password is required.'] 
+  }
   //createdAt: { type: Date, default: Date.now }
 },
 {
@@ -28,7 +32,7 @@ userSchema.pre("save", function(next) {
   next();
 });
 
-userSchema.plugin(uniqueValidator, { message: 'Error, expected {EMAIL} to be unique.' });
+//userSchema.plugin(uniqueValidator, { message: 'Error, expected {EMAIL} to be unique.' });
 var User = mongoose.model('User', userSchema);
 
 module.exports = User;
